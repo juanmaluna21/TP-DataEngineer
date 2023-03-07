@@ -34,24 +34,24 @@ df_netflix = transformation (df_netflix,'n')
 
 #PREGUNTAS
 # 1) Number of times a keyword appears in the title of movies/series, by platform
-def keyword_quantity (data_frame, keyword):
-    contador = 0
-    lista = []
-    for palabra in data_frame.title:
-        palabra = str(palabra).split()
-        for elemento in palabra:
-            lista.append(elemento)
-    contador = lista.count(keyword)
-    return contador
+def keyword_quantity (platform, keyword):
+    count = 0
+    list1 = []
+    for word in platform.title:
+        word = str(word).split()
+        for element in word:
+            list1.append(element)
+    count = list1.count(keyword)
+    return count
 # 2) Number of films by platform with a score greater than XX in a given year
-def film_by_score(data_frame, anio, puntaje):
-    return len(data_frame[(data_frame['date_added'].dt.year== anio) & (data_frame['score'] >= puntaje)].value_counts())
+def film_by_score(platform, year, score):
+    return len(platform[(platform['date_added'].dt.year== year) & (platform['score'] >= score)].value_counts())
 # 3) Second highest scoring film for a given platform, based on alphabetical order of titles
-def second_max(data_frame):
-    return data_frame[data_frame['score']==data_frame['score'].max()].sort_values(by=['title']).iloc[1].to_json()
+def second_max(platform):
+    return platform[platform['score']==platform['score'].max()].sort_values(by=['title']).iloc[1].to_json()
 # 4) Film that lasted the longest according to year, platform and type of duration
-def max_duration(data_frame, tipo):
-    return data_frame[data_frame['duration_type']== tipo].sort_values(by= ['duration_int']).iloc[-1].to_json()
+def max_duration(platform, type):
+    return platform[platform['duration_type']== type].sort_values(by= ['duration_int']).iloc[-1].to_json()
 # 5) Number of series and movies by score
-def movies_series_byscore (data_frame):
-    return data_frame['rating'].value_counts().to_json()
+def movies_series_byscore (platform):
+    return platform['rating'].value_counts().to_json()
