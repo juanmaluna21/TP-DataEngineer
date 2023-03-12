@@ -5,7 +5,7 @@ from fastapi import FastAPI
 
 #Titulo y descripción de la API
 app = FastAPI(title= 'Movies and Series database',
-              description= 'Through this API you can find the movies/series of the platforms: Amazon, Disney Plus, Hulu and Netflix',
+              description= 'Through this API you can find the movies/series of the following platforms platforms: Amazon, Disney Plus, Hulu and Netflix',
               )
 
 # welcome
